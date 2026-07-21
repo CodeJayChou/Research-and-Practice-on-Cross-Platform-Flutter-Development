@@ -1,17 +1,24 @@
-# cross_platform_app
+# Short Video
 
-A new Flutter project.
+A Flutter short-video application built as an interview case study. The project
+focuses on vertical video playback, playback lifecycle management, preload and
+cache strategies, feed state, and cross-platform behavior.
 
-## Getting Started
+## Run
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+VS Code workspace settings enable auto-save and hot reload during an active
+Flutter debug session.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Project status
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The initial feature-first architecture and feed shell are in place. Feed data is
+currently provided by a mock repository, while the visual surface reserves the
+integration point for the video player.
+
+See [`docs/architecture/README.md`](docs/architecture/README.md) for dependency
+rules and directory ownership.
