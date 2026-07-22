@@ -1,0 +1,56 @@
+export const videoSchema = {
+  type: 'object',
+  required: [
+    'id',
+    'channelId',
+    'title',
+    'description',
+    'posterUrl',
+    'width',
+    'height',
+    'durationMs',
+    'playback',
+    'author',
+    'stats',
+    'createdAt',
+  ],
+  properties: {
+    id: { type: 'string' },
+    channelId: { type: 'string' },
+    title: { type: 'string' },
+    description: { type: 'string' },
+    posterUrl: { type: 'string', format: 'uri' },
+    width: { type: 'integer' },
+    height: { type: 'integer' },
+    durationMs: { type: 'integer' },
+    playback: {
+      type: 'object',
+      required: ['url', 'type', 'mimeType'],
+      properties: {
+        url: { type: 'string', format: 'uri' },
+        type: { type: 'string', enum: ['progressive', 'hls'] },
+        mimeType: { type: 'string' },
+      },
+    },
+    author: {
+      type: 'object',
+      required: ['id', 'displayName', 'avatarUrl'],
+      properties: {
+        id: { type: 'string' },
+        displayName: { type: 'string' },
+        avatarUrl: { type: 'string', format: 'uri' },
+      },
+    },
+    stats: {
+      type: 'object',
+      required: ['viewCount', 'likeCount', 'commentCount', 'shareCount'],
+      properties: {
+        viewCount: { type: 'integer' },
+        likeCount: { type: 'integer' },
+        commentCount: { type: 'integer' },
+        shareCount: { type: 'integer' },
+      },
+    },
+    createdAt: { type: 'string', format: 'date-time' },
+  },
+} as const;

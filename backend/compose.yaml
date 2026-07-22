@@ -1,0 +1,15 @@
+services:
+  video-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cross-platform-video-api:local
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    ports:
+      - "${PORT:-3000}:3000"
+    restart: unless-stopped

@@ -82,7 +82,7 @@ class _HomeTopNavigationBarState extends State<HomeTopNavigationBar>
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   padding: EdgeInsets.zero,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 5),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 6),
                   labelColor: Colors.white,
                   unselectedLabelColor: _inactiveColor,
                   labelStyle: const TextStyle(
