@@ -11,7 +11,8 @@ lib/
 │   └── router/                  # Central route names and route table
 ├── core/                        # Code shared by multiple features
 │   ├── theme/                   # Global application theme
-│   └── utils/                   # Shared stateless utilities
+│   ├── utils/                   # Shared stateless utilities
+│   └── widgets/                 # Shared infrastructure widgets
 ├── features/
 │   ├── home/                    # Home feature
 │   ├── shop/                    # Shop feature
@@ -44,4 +45,5 @@ the feature gains real business logic. Avoid empty architectural layers.
 `CrossPlatformApp` configures the theme and centralized route table.
 `MainShellPage` owns root-tab selection and composes the five feature pages.
 `MainBottomNavigationBar` contains only bottom-navigation presentation. The
-feature pages are intentionally minimal and can grow independently.
+feature pages can grow independently. `HomeVideoView` composes the immersive
+video surface and its safe-area-aware top navigation through `AppPageLayout`.

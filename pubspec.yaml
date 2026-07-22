@@ -60,6 +60,7 @@ flutter:
 
   assets:
     - assets/icons/bottom_tabbar/
+    - assets/icons/home/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

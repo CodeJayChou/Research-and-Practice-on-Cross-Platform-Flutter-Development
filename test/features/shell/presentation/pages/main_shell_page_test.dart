@@ -8,10 +8,28 @@ void main() {
   testWidgets('switches pages with the bottom navigation bar', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: MainShellPage()));
 
-    expect(find.text('首页'), findsNWidgets(2));
-    expect(find.byType(Icon), findsNothing);
-    expect(find.byType(InkWell), findsNothing);
-    expect(find.byType(SvgPicture), findsNWidgets(2));
+    expect(find.text('首页'), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.byType(Icon),
+      ),
+      findsNothing,
+    );
+    expect(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.byType(InkWell),
+      ),
+      findsNothing,
+    );
+    expect(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.byType(SvgPicture),
+      ),
+      findsNWidgets(2),
+    );
     expect(
       find.descendant(
         of: find.byType(MainBottomNavigationBar),
@@ -42,7 +60,13 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('商城'), findsNWidgets(2));
-    expect(find.byType(SvgPicture), findsNWidgets(2));
+    expect(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.byType(SvgPicture),
+      ),
+      findsNWidgets(2),
+    );
     expect(
       tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity)).opacity,
       0,
