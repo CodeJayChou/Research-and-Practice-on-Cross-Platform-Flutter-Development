@@ -14,10 +14,8 @@ class MainBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Material(
-      color: colorScheme.surface,
+      color: Colors.white,
       child: SafeArea(
         top: false,
         child: SizedBox(
@@ -30,15 +28,14 @@ class MainBottomNavigationBar extends StatelessWidget {
                 child: Semantics(
                   button: true,
                   selected: isSelected,
-                  child: InkWell(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
                     onTap: () => onTap(index),
                     child: Center(
                       child: Text(
                         _labels[index],
                         style: TextStyle(
-                          color: isSelected
-                              ? colorScheme.primary
-                              : colorScheme.onSurfaceVariant,
+                          color: isSelected ? Colors.black : Colors.grey,
                           fontWeight: isSelected
                               ? FontWeight.w600
                               : FontWeight.w400,

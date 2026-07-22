@@ -11,7 +11,7 @@ class CrossPlatformApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cross Platform App',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       // theme: AppTheme.dark,
       initialRoute: AppRoutes.home,
       routes: AppRouter.routes,
