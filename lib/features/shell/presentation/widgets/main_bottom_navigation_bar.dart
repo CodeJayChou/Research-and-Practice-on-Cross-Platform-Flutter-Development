@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../core/utils/icon_utils.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
   const MainBottomNavigationBar({
@@ -12,6 +13,7 @@ class MainBottomNavigationBar extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   static const _labels = ['首页', '商城', '发布', '消息', '我'];
+  static const _publishAssetPath = 'assets/icons/bottom_tabbar/publish.svg';
 
   @override
   Widget build(BuildContext context) {
@@ -30,32 +32,40 @@ class MainBottomNavigationBar extends StatelessWidget {
                   child: Semantics(
                     button: true,
                     selected: isSelected,
+                    label: index == 2 ? _labels[index] : null,
                     child: GestureDetector(
                       behavior: HitTestBehavior.opaque,
                       onTap: () => onTap(index),
                       child: Center(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          clipBehavior: Clip.none,
-                          children: [
-                            Text(
-                              _labels[index],
-                              style: TextStyle(
-                                color: isSelected ? Colors.black : Colors.grey,
-                                fontWeight: isSelected
-                                    ? FontWeight.w600
-                                    : FontWeight.w400,
+                        child: index == 2
+                            ? IconUtils.svgAsset(
+                                assetPath: _publishAssetPath,
+                                size: 24,
+                              )
+                            : Stack(
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Text(
+                                    _labels[index],
+                                    style: TextStyle(
+                                      color: isSelected
+                                          ? Colors.black
+                                          : Colors.grey,
+                                      fontWeight: isSelected
+                                          ? FontWeight.w600
+                                          : FontWeight.w400,
+                                    ),
+                                  ),
+                                  if (index == 0)
+                                    Transform.translate(
+                                      offset: const Offset(27, 0),
+                                      child: _AnimatedHomeSwitchIcon(
+                                        isVisible: isSelected,
+                                      ),
+                                    ),
+                                ],
                               ),
-                            ),
-                            if (index == 0)
-                              Transform.translate(
-                                offset: const Offset(27, 0),
-                                child: _AnimatedHomeSwitchIcon(
-                                  isVisible: isSelected,
-                                ),
-                              ),
-                          ],
-                        ),
                       ),
                     ),
                   ),
@@ -89,11 +99,7 @@ class _AnimatedHomeSwitchIcon extends StatelessWidget {
               ? Duration.zero
               : const Duration(milliseconds: 180),
           curve: isVisible ? Curves.easeOut : Curves.easeIn,
-          child: RepaintBoundary(
-            child: ExcludeSemantics(
-              child: SvgPicture.asset(_assetPath, width: 12, height: 12),
-            ),
-          ),
+          child: IconUtils.svgAsset(assetPath: _assetPath, size: 12),
         ),
       ),
     );

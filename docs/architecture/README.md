@@ -10,7 +10,8 @@ lib/
 │   ├── app.dart                 # Root MaterialApp
 │   └── router/                  # Central route names and route table
 ├── core/                        # Code shared by multiple features
-│   └── theme/                   # Global application theme
+│   ├── theme/                   # Global application theme
+│   └── utils/                   # Shared stateless utilities
 ├── features/
 │   ├── home/                    # Home feature
 │   ├── shop/                    # Shop feature

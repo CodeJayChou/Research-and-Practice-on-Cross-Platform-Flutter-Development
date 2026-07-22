@@ -11,7 +11,14 @@ void main() {
     expect(find.text('首页'), findsNWidgets(2));
     expect(find.byType(Icon), findsNothing);
     expect(find.byType(InkWell), findsNothing);
-    expect(find.byType(SvgPicture), findsOneWidget);
+    expect(find.byType(SvgPicture), findsNWidgets(2));
+    expect(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.text('发布'),
+      ),
+      findsNothing,
+    );
     expect(
       tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity)).opacity,
       1,
@@ -35,7 +42,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('商城'), findsNWidgets(2));
-    expect(find.byType(SvgPicture), findsOneWidget);
+    expect(find.byType(SvgPicture), findsNWidgets(2));
     expect(
       tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity)).opacity,
       0,
@@ -49,5 +56,10 @@ void main() {
       ),
       homeLabelCenter,
     );
+
+    await tester.tap(find.bySemanticsLabel('发布'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('发布'), findsOneWidget);
   });
 }
