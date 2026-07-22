@@ -2,6 +2,7 @@ import 'package:cross_platform_app/features/shell/presentation/pages/main_shell_
 import 'package:cross_platform_app/features/shell/presentation/widgets/main_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   testWidgets('switches pages with the bottom navigation bar', (tester) async {
@@ -10,6 +11,11 @@ void main() {
     expect(find.text('首页'), findsNWidgets(2));
     expect(find.byType(Icon), findsNothing);
     expect(find.byType(InkWell), findsNothing);
+    expect(find.byType(SvgPicture), findsOneWidget);
+    expect(
+      tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity)).opacity,
+      1,
+    );
 
     final homeLabel = tester.widget<Text>(
       find.descendant(
@@ -18,10 +24,30 @@ void main() {
       ),
     );
     expect(homeLabel.style?.color, Colors.black);
+    final homeLabelCenter = tester.getCenter(
+      find.descendant(
+        of: find.byType(MainBottomNavigationBar),
+        matching: find.text('首页'),
+      ),
+    );
 
     await tester.tap(find.text('商城'));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('商城'), findsNWidgets(2));
+    expect(find.byType(SvgPicture), findsOneWidget);
+    expect(
+      tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity)).opacity,
+      0,
+    );
+    expect(
+      tester.getCenter(
+        find.descendant(
+          of: find.byType(MainBottomNavigationBar),
+          matching: find.text('首页'),
+        ),
+      ),
+      homeLabelCenter,
+    );
   });
 }

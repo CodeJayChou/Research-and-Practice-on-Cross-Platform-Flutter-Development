@@ -28,10 +28,16 @@ class _MainShellPageState extends State<MainShellPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _selectedIndex, children: _pages),
+      body: RepaintBoundary(
+        child: IndexedStack(index: _selectedIndex, children: _pages),
+      ),
       bottomNavigationBar: MainBottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
+          if (index == _selectedIndex) {
+            return;
+          }
+
           setState(() {
             _selectedIndex = index;
           });
